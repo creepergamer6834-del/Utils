@@ -1,8 +1,11 @@
 public class Utils {
-    public static void printArray(int[] array) {
+    public static String printArray(int[] array) {
+        String array1 = "";
         for (int i : array) {
-            System.out.println(i + " ");
+            array1 += (i + ", ");
         }
+
+        return array1;
     }
 
     public static int randomNumber(int low, int high) {
@@ -155,12 +158,12 @@ public class Utils {
         return lowest;
     }
 
-    public static double average(int[] numbers) {
+    public static double average(int[] numbers, int start) {
         if (numbers == null || numbers.length == 0) {
             return 0.0;
         }
         int sum = 0;
-        for (int i = 0; i < numbers.length; i++) {
+        for (int i = start; i < numbers.length; i++) {
             sum += numbers[i];
         }
         return (double) sum / numbers.length;
@@ -176,5 +179,31 @@ public class Utils {
             }
         }
         return false;
+    }
+
+    public static boolean hasImproved(int[] numbers) {
+        if (numbers.length <= 0) {
+            return true;
+        }
+        for (int i = 1; i < numbers.length; i++) {
+            int previous = numbers[i - 1];
+            int current = numbers[i];
+            if (current <= previous) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static int getNumber(int[] numbers, int index) {
+        return numbers[index];
+    }
+
+    public static double getAverageFromArray(int[] numbers, int num1, int num2) {
+
+        double a = getNumber(numbers, num1);
+        double b = getNumber(numbers, num2);
+        double average = (double) (a / b);
+        return average;
     }
 }
