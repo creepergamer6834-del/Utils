@@ -202,8 +202,6 @@ public class Utils {
         return average;
     }
 
-    // --- 15 Added Utility Methods ---
-
     public static int countOccurrences(int[] numbers, int target) {
         if (numbers == null) {
             return 0;
