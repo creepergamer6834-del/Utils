@@ -1,10 +1,10 @@
 public class Utils {
+
     public static String printArray(int[] array) {
         String array1 = "";
         for (int i : array) {
             array1 += (i + ", ");
         }
-
         return array1;
     }
 
@@ -67,16 +67,13 @@ public class Utils {
         if (text == null || text.isEmpty()) {
             return false;
         }
-
         int i = 0;
         if (text.charAt(0) == '-') {
             i++;
         }
-
         if (i >= text.length() || !Character.isDigit(text.charAt(i))) {
             return false;
         }
-
         int dotCount = 0;
         for (; i < text.length(); i++) {
             char current = text.charAt(i);
@@ -91,7 +88,6 @@ public class Utils {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -200,10 +196,222 @@ public class Utils {
     }
 
     public static double getAverageFromArray(int[] numbers, int num1, int num2) {
-
         double a = getNumber(numbers, num1);
         double b = getNumber(numbers, num2);
         double average = (double) (a / b);
         return average;
+    }
+
+    // --- 15 Added Utility Methods ---
+
+    public static int countOccurrences(int[] numbers, int target) {
+        if (numbers == null) {
+            return 0;
+        }
+        int count = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] == target) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static int sumDigits(String text) {
+        if (text == null) {
+            return 0;
+        }
+        int sum = 0;
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            if (Character.isDigit(c)) {
+                sum += Character.getNumericValue(c);
+            }
+        }
+        return sum;
+    }
+
+    public static int linearSearch(int[] numbers, int target) {
+        if (numbers == null) {
+            return -1;
+        }
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] == target) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static void reverseArray(int[] numbers) {
+        if (numbers == null || numbers.length <= 1) {
+            return;
+        }
+        int left = 0;
+        int right = numbers.length - 1;
+        while (left < right) {
+            int temp = numbers[left];
+            numbers[left] = numbers[right];
+            numbers[right] = temp;
+            left++;
+            right--;
+        }
+    }
+
+    public static int[] mergeArrays(int[] arr1, int[] arr2) {
+        if (arr1 == null)
+            arr1 = new int[0];
+        if (arr2 == null)
+            arr2 = new int[0];
+        int[] result = new int[arr1.length + arr2.length];
+        for (int i = 0; i < arr1.length; i++) {
+            result[i] = arr1[i];
+        }
+        for (int i = 0; i < arr2.length; i++) {
+            result[arr1.length + i] = arr2[i];
+        }
+        return result;
+    }
+
+    public static int[] filterEven(int[] numbers) {
+        if (numbers == null) {
+            return new int[0];
+        }
+        int count = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] % 2 == 0) {
+                count++;
+            }
+        }
+        int[] evens = new int[count];
+        int index = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] % 2 == 0) {
+                evens[index++] = numbers[i];
+            }
+        }
+        return evens;
+    }
+
+    public static boolean isPalindrome(String text) {
+        if (text == null) {
+            return false;
+        }
+        int left = 0;
+        int right = text.length() - 1;
+        while (left < right) {
+            if (Character.toLowerCase(text.charAt(left)) != Character.toLowerCase(text.charAt(right))) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    public static int countWords(String text) {
+        if (text == null || text.isEmpty()) {
+            return 0;
+        }
+        int count = 1;
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) == ' ') {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static String maskString(String text, int start, int end, char maskChar) {
+        if (text == null || start < 0 || end > text.length() || start >= end) {
+            return text;
+        }
+        String result = "";
+        for (int i = 0; i < text.length(); i++) {
+            if (i >= start && i < end) {
+                result += maskChar;
+            } else {
+                result += text.charAt(i);
+            }
+        }
+        return result;
+    }
+
+    public static int[] removeZeros(int[] numbers) {
+        if (numbers == null) {
+            return new int[0];
+        }
+        int count = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] != 0) {
+                count++;
+            }
+        }
+        int[] result = new int[count];
+        int index = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] != 0) {
+                result[index++] = numbers[i];
+            }
+        }
+        return result;
+    }
+
+    public static boolean allPositive(int[] numbers) {
+        if (numbers == null) {
+            return false;
+        }
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] <= 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static String repeatString(String text, int times) {
+        if (text == null || times <= 0) {
+            return "";
+        }
+        String result = "";
+        for (int i = 0; i < times; i++) {
+            result += text;
+        }
+        return result;
+    }
+
+    public static int sumArray(int[] numbers) {
+        if (numbers == null) {
+            return 0;
+        }
+        int sum = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            sum += numbers[i];
+        }
+        return sum;
+    }
+
+    public static boolean hasNegative(int[] numbers) {
+        if (numbers == null) {
+            return false;
+        }
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] < 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static int indexOfLast(int[] numbers, int target) {
+        if (numbers == null) {
+            return -1;
+        }
+        for (int i = numbers.length - 1; i >= 0; i--) {
+            if (numbers[i] == target) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
